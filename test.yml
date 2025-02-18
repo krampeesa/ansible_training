@@ -1,0 +1,17 @@
+---
+- name: Play
+  hosts: servers
+  vars:
+    users:
+      - kiran
+      - shiva
+      - admin
+  tasks: 
+    - name: install httpd if user is admin
+      yum:
+        name: httpd
+        state: latest
+      loop: "{{ users }}"
+      when: item == "admin"
+
+

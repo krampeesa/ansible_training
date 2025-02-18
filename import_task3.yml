@@ -1,0 +1,24 @@
+---
+- name: play to work on import tasks
+  hosts: all
+  vars:
+    dest_path_httpd: /var/www/html/index.html
+    dest_path_nginx: /var/www/html/index.html
+  vars_prompt:
+    - name: package
+      prompt: "Provide package which you want to install httpd/nginx"
+      private: false
+    - name: state
+      prompt: "provide state: latest/present/absent"
+      private: false
+  tasks:
+    - name: task to install httpd
+      import_tasks: tasks/install.yml
+
+    - name: copy content for nginx
+      import_tasks: tasks/content_nginx.yml
+      when: package == "nginx"
+
+    - name: copy content for httpd
+      import_tasks: tasks/content_httpd.yml
+      when: package == "httpd"

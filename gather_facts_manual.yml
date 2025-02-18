@@ -1,0 +1,14 @@
+---
+- name: play
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: task1
+      setup:
+      register: output_var
+
+    - name: task2
+      debug:
+        msg:
+          - " Ip is {{output_var.ansible_facts.ansible_all_ipv4_addresses}}"
+

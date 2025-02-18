@@ -1,0 +1,14 @@
+---
+- name: Deploy Package 
+  hosts: servers
+  tasks:
+    - name: "Installing {{var_pkg}}"
+      package:
+        name: "{{var_pkg}}"
+        state: present
+
+    - name: "Starting {{var_pkg}}"
+      service:
+        name: "{{var_pkg}}"
+        state: started
+

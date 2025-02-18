@@ -1,0 +1,6 @@
+---
+- name: play to work with roles
+  hosts: all
+  roles:
+    - dbrole
+    - webrole

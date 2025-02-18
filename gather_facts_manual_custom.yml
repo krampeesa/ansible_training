@@ -1,0 +1,18 @@
+---
+- name: playbook to gather custom facts
+  gather_facts: false
+  hosts: all
+  tasks:
+    - name: task to gather required facts
+      setup:
+        gather_subset:
+          #- ip*
+          - all
+          #- mounts
+          #- all
+          #- !all
+      register: hostinfo
+
+    - name: to disaplay facts using debug
+      debug:
+        msg: "Ip is {{hostinfo.ansible_facts.ansible_all_ipv4_addresses}}"

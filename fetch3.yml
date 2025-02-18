@@ -1,0 +1,16 @@
+---
+- name: playbook to gather outputs
+  hosts: all
+  tasks:
+    - name: gather commands output and store in file
+      shell: |
+        'df -h|wc -l > /tmp/output.txt'
+        'uptime >> /tmp/output.txt'
+        'df -PTh >> /tmp/output.txt'
+        'cat /etc/resolv.conf >>/tmp/output.txt'
+
+    - name: task to copy above file to ansible
+      fetch:
+        src: /tmp/output.txt
+        dest: /tmp/kiran/{{inventory_hostname}}.data
+

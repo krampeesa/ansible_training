@@ -1,0 +1,11 @@
+---
+- name: command error check
+  hosts: all
+  tasks:
+    - name: task to list id
+      command: id
+      register: id_out_var
+
+    - name: task to debug
+      debug:
+        var: id_out_var

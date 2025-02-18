@@ -1,0 +1,35 @@
+---
+- name: deploy web server
+  hosts: all
+  tasks:
+    - name: "deploying {{var_service}}"
+      yum:
+        name: "{{var_service}}"
+        state: present
+
+    - name: "Starting {{var_service}}"
+      service:
+        name: "{{var_service}}"
+        state: started
+        enabled: true
+
+    - name: Configuring web page 
+      copy:
+        content: "{{var_custom_content}}"
+        dest: "{{ var_hppath }}/index.html"
+
+    - name: Open {{ var_service }} service in firewall
+      ansible.posix.firewalld:
+        service: "{{ var_service_firewall }}"
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: Open port 80
+      ansible.posix.firewalld:
+        port: "{{var_webport}}"
+        state: enabled
+        permanent: true
+        immediate: true
+
+

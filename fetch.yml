@@ -1,0 +1,9 @@
+---
+- name: play to copy file from managed to controlled node
+  hosts: all
+  tasks:
+    - name: task to copy file from remote server
+      fetch:
+        src: /etc/resolv.conf
+        dest: /tmp/{{inventory_hostname}}.output
+        flat: yes

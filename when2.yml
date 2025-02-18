@@ -1,0 +1,9 @@
+---
+- name: play to install package
+  hosts: all
+  tasks:
+    - name: Install Httpd
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "Redhat"

@@ -1,0 +1,47 @@
+---
+- name: playbook or httpd web page
+  hosts: all
+  tasks:
+    - name: Installing httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Starting httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Starting firewalld
+      service:
+        name: firewalld
+        state: started
+
+    - name: Configuring web page 
+      copy:
+        content: "Welcome to Web server Home Page"
+        dest: /var/www/html/index.html
+
+    - name: Open http service in firewall
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+    
+    - name: Open port 80
+      ansible.posix.firewalld:
+        port: 80/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+- name: Play2 for verifying connection.
+  hosts: all
+  tasks:
+    - name: checking connection
+      ansible.legacy.uri:
+        url: http://10.0.5.30:80
+        return_content: yes
+        status_code: 200

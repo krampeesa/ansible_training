@@ -1,0 +1,13 @@
+---
+- name: play to create file
+  hosts: all
+  tasks:
+    - name: show RAM
+      debug:
+        msg: "Total memory : {{ansible_memtotal_mb}}"
+
+    - name: file create
+      copy:
+        content: " Memory > 4000 so file created"
+        dest: /tmp/kiran1..txt
+      when: ansible_memtotal_mb < 4000

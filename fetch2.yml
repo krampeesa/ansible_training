@@ -1,0 +1,12 @@
+---
+- name: play to gather outputs and store in ansible server
+  hosts: all
+  tasks:
+    - name: store outputs in one file
+      shell: "df -h > /tmp/out.txt"
+
+    - name: task to copy files
+      fetch:
+        src: /tmp/out.txt
+        dest: /tmp/kiran/{{inventory_hostname}}.outputs
+        flat: yes   #it will be used to store data in file instaed of directory structure

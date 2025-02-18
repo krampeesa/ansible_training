@@ -1,0 +1,20 @@
+---
+- name: Playbook for craete multiple user using loop
+  hosts: all
+  tasks:
+    - name: task to create multiple users using single task
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - k1
+        - a1
+    
+    - name: task to install multiple packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - httpd
+        - nginx
+

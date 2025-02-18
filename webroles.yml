@@ -1,0 +1,5 @@
+---
+- name: play to work on roles
+  hosts: all
+  roles:
+     -  webrole

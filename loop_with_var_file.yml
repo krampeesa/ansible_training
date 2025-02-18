@@ -1,0 +1,11 @@
+---
+- name: play to work with groups vars and loop
+  hosts: all
+  vars_files:
+    - users
+  tasks:
+    - name: create user
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users }}"

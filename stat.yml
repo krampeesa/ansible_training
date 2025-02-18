@@ -1,0 +1,14 @@
+---
+- name: play to crfeate file
+  hosts: all
+  tasks:
+    - name: check if file exists
+      stat:
+        path: /tmp/kiran.txt
+      register: stat_out
+
+    - name: task to create file it not exists
+      copy: 
+        content: "Hi"
+        dest: /tmp/kiran.txt
+      when: not stat_out.stat.exists

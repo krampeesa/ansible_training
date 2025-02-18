@@ -1,0 +1,43 @@
+---
+- name: playbook or httpd web page
+  hosts: all
+  tasks:
+    - name: Installing httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Starting firewalld
+      service:
+        name: firewalld
+        state: started
+
+    - name: Configuring web page 
+      copy:
+        content: "Welcome to Web server Home Page-Handlers"
+        dest: /var/www/html/index.html
+      notify: change_in_config
+
+    - name: Open http service in firewall
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+    
+    - name: Open port 80
+      ansible.posix.firewalld:
+        port: 80/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+  handlers:
+    - name: change_in_config
+      service:
+        name: httpd
+        state: restarted

@@ -1,0 +1,12 @@
+---
+- name: play to work on import tasks
+  hosts: all
+  vars:
+    package: httpd
+    dest_path: /var/www/html/index.html
+  tasks:
+    - name: task to install httpd
+      import_tasks: tasks/install.yml
+
+    - name: copying web content
+      import_tasks: tasks/content.yml

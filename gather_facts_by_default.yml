@@ -1,0 +1,9 @@
+---
+- name: play for gather facts for only what we need.
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: task to gather facts.
+      debug:
+        msg:
+          - " IP is {{ ansible_all_ipv4_addresses }}"

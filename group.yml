@@ -1,0 +1,14 @@
+---
+- name: playbook for group creation
+  hosts: all
+  tasks:
+    - name: task for creating sales group
+      group:
+        name: sales
+        state: present
+
+    - name: creating salesmanager user and adding to sales group
+      user:
+        name: salesmanager
+        groups: sales
+        state: present

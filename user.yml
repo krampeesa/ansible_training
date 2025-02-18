@@ -1,0 +1,9 @@
+---
+- name: playbook to create user
+  hosts: all
+  tasks:
+    - name: creating user
+      user:
+        name: kiran
+              rAJU
+        state: present

@@ -1,0 +1,24 @@
+--- 
+- name: play to get file from url
+  hosts: all
+  tasks:
+    - name: download file from url
+      get_url:
+        url: http://10.0.5.1/source.html
+        dest: /var/www/html/index.html
+      retries: 4
+      delay: 10
+      register: result
+      until: result is succeeded
+
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+      notify: start_httpd
+
+  handlers:
+    - name: start_httpd
+      service:
+        name: httpd
+        state: started

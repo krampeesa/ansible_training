@@ -1,0 +1,19 @@
+- name: Play for task failure
+  hosts: servers
+  tasks: 
+    - name: install httpd
+      yum:
+        name: httpddd
+        state: latest
+      ignore_errors: true 
+    - name: create user
+      user:
+        name: Raju
+        state: present
+      ignore_errors: true 
+
+    - name: copy
+      copy:
+        content: "Test File"
+        dest: /tmp/kk.txt
+

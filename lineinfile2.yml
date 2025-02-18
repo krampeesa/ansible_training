@@ -1,0 +1,27 @@
+---
+- name: play
+  hosts: all
+  tasks:
+    - name: task to append line at end of file #default
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        line: "Web server managed by Ansible"
+
+    - name: task to append line at starting of file
+      lineinfile:
+        path: /home/devops/kiran.txt
+        line: " -----This file managed by Ansible---------"
+        insertafter: BOF
+
+    - name: tasl to modify/update line using expression.
+      lineinfile:
+        path: /home/devops/kiran.txt
+        regexp: '^Hi'
+        line: "Replce of Hi"
+        state: present
+
+    - name: task to modify entry in sudoers file
+      lineinfile:
+        path: /etc/sudoers
+        insertafter: 'root ALL=(ALL) NOPASSWD: ALL'
+        line: "kiran ALL=(ALL) NOPASSWD: ALL"

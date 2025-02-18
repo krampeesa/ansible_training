@@ -1,0 +1,17 @@
+---
+- name: play1
+  hosts: all
+  tasks:
+    - name: task1
+      group:
+        name: accountgroup
+        state: present
+
+    - name: task2
+      user:
+        name: accountmanager
+        state: present
+        uid: 3030
+        shell: /bin/sh
+        groups: accountgroup
+

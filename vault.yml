@@ -1,0 +1,11 @@
+---
+- name: play for vault
+  hosts: all
+  vars_files:
+    - myvault
+  tasks:
+    - name: create user
+      user:
+        name: KiranL
+        password: "{{ 'password' | password_hash('sha512') }}"
+        state: present

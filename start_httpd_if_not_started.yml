@@ -1,0 +1,24 @@
+- name: install web server based on OS_family
+  hosts: servers
+  tasks: 
+    - name: Task 1
+      shell: "systemctl status nginx"
+      register: status
+      ignore_errors: true
+
+    - name: debug message
+      debug: 
+         var: status
+
+    - name: start the service if not started
+      shell: "systemctl start nginx"
+      when: " 'inactive' in status.stdout"
+
+
+    - name: display current status
+      shell: "systemctl status nginx"
+      register: latest
+
+    - name: display
+      debug:
+        msg: "Status: {{latest.stdout}}"

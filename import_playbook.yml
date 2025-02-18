@@ -1,0 +1,3 @@
+---
+- name: Play to call another playbook
+  import_playbook: /home/student/prod/dbrole.yml

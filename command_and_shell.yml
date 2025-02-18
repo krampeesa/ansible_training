@@ -1,0 +1,9 @@
+---
+- name: plabook to differentiate command vs shell module
+  hosts: all
+  tasks:
+    - name: command module
+      command: df -h
+
+    - name: shell module
+      shell: cat /etc/resolv.conf| grep  search

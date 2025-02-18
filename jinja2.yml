@@ -1,0 +1,9 @@
+---
+- name: play to work with templates using jinja2
+  hosts: all
+  tasks:
+    - name: copy motd file to remote server using template
+      template:
+        src: motd.j2
+        dest: /etc/motd
+        backup: yes

@@ -1,0 +1,33 @@
+---
+- name: Play to work on block and rescue
+  hosts: all
+  tasks:
+    - name: block task
+      block:
+        - name:  file task
+          file:
+            path: /tmp/abc.txt
+            state: touch
+        - name:  httpd task
+          yum:
+            name: httpd
+            state: absent
+        - name: command task
+          command: lsblkdd  # here it will fail,
+
+      rescue:
+        - name: revert file task
+          file:
+            path: /tmp/abc.txt
+            state: absent
+        
+        - name: revert httpd task
+          yum:
+            name: httpd
+            state: present
+
+      always:
+        - name: always task
+          file:
+            path: /tmp/always.txt
+            state: touch

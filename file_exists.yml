@@ -1,0 +1,13 @@
+---
+- name: play for showing file exists or not
+  hosts: all
+  tasks:
+    - name: task to list file
+      shell: "cat /etc/kiran.txt"
+      register: command_out
+      ignore_errors: true
+
+    - name:
+      debug:
+        msg: "File is not exists or deleted"
+      when: "'No such file or directory' in command_out.stderr"

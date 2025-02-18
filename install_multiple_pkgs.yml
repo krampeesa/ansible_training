@@ -1,0 +1,10 @@
+---
+- name: deploy packages
+  hosts: all
+  tasks:
+    - name: task to install
+      yum:
+        name:
+          - httpd
+          - sssd
+        state: present

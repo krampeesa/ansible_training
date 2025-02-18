@@ -1,0 +1,9 @@
+---
+- name: play to copy file
+  hosts: all
+  tasks:
+    - name: copy file
+      copy:
+        remote_src: true
+        src: /tmp/kiran.txt
+        dest: /tmp/abc.txt

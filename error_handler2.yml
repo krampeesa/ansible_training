@@ -1,0 +1,38 @@
+---
+- name: Play for testing error handling
+  hosts: all
+  force_handlers: true
+  tasks:
+    - name: Install Httpd
+      yum:
+        name: httpd
+        state: present
+      notify: handler_httpd
+
+    - name: Web page
+      copy:
+        content: "This is web page content"
+        dest: /var/www/html/index.html
+      notify: handler_config_change
+
+    - name: Install ABC
+      yum:
+        name: abc
+        state: present
+      notify: handler_abc
+
+  handlers:
+    - name: handler_httpd
+      service:
+        name: httpd
+        state: restarted
+
+    - name: handler_config_change
+      service:
+        name: httpd
+        state: restarted
+
+    - name: handler_abc
+      service:
+        name: abc
+        state: present

@@ -1,0 +1,10 @@
+---
+- name: play to work on blockinfile module
+  hosts: node1.example.com
+  tasks:
+   - name: task to add lines 
+     blockinfile:
+       path: /etc/resolv.conf
+       block: |
+         nameserver 10.10.10.10
+         nameserver 8.8.8.8

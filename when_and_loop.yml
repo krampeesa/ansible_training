@@ -1,0 +1,11 @@
+- name: install web server based on OS_family
+  hosts: servers
+  tasks: 
+    - name: install httpd if RedHat family OS
+      yum:
+        name: httpd
+        state: latest
+      loop: "{{ ansible_mounts }}"
+      when: item.mount == "/" and item.size_available < 5000000
+
+

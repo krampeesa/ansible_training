@@ -1,0 +1,7 @@
+---
+- name: first yml for ping status
+  hosts: all
+  tasks: 
+    - name: check ping status
+      ping:
+

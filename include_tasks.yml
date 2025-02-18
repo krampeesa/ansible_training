@@ -1,0 +1,14 @@
+---
+- name: play to work on include_tasks
+  hosts: all
+  vars:
+    package: httpd
+    state: present
+  tasks:
+    - name: task1
+      yum:
+        name: "{{package}}"
+        state: present
+
+    - name: task2
+      include_tasks: tasks/install.yml

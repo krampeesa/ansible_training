@@ -1,0 +1,24 @@
+---
+- name: play to work with loop and var
+  hosts: all
+  vars:
+    users:
+      - abc
+      - xyz
+    folders:
+      - folder1
+      - folder2
+  tasks:
+    - name: Task to create user accounts
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users }}"
+
+    - name: Task to create folders 
+      file:
+        name: "{{ item }}"
+        path: "/tmp/{{item}}"
+        state: directory
+      loop: "{{folders}}"
+

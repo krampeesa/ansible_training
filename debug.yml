@@ -1,0 +1,12 @@
+---
+- name: playbook for debug module
+  hosts: all
+  tasks:
+    - name: list all disks using command module
+      command: free -h
+      register: debug_output
+
+    - name: debug task
+      debug:
+        #:wq   msg: "The output of above command module is {{debug_output.stdout}}"
+        var: debug_output

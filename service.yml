@@ -1,0 +1,8 @@
+---
+- name: playbook for starting httpd
+  hosts: all
+  tasks:
+    - name: task for starting httpd service
+      service:
+        name: httpd
+        state: started

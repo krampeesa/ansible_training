@@ -1,0 +1,8 @@
+userlist: 
+  - username: "Kiran"
+    comment: "Test User"
+    shell: /bin/bash
+
+  - username: "Shiva"
+    comment: "Test User"
+    shell: /bin/sh

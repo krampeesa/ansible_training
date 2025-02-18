@@ -1,0 +1,10 @@
+---
+- name: Playbook to test variable using file
+  hosts: all
+  vars_files:
+    - varfile.txt
+  tasks:
+    - name: "Installation of {{ var_pkg }}"
+      yum:
+        name: "{{ var_pkg }}"
+        state: present

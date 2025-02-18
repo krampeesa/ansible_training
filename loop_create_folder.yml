@@ -1,0 +1,11 @@
+---
+- name: Play to create multiple folder
+  hosts: all
+  tasks:
+    - name: task to create multiple folders
+      file:
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop:
+        - dbdata
+        - appdata

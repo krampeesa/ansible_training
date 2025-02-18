@@ -1,0 +1,9 @@
+---
+- name: deploy httpd
+  hosts: all
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+      when: ansible_local.custom.env.environment =="development"

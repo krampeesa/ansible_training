@@ -1,0 +1,14 @@
+---
+- name: play for copy and variable
+  hosts: all
+  tasks:
+    - name: task1 to display memory info
+      command: free -h
+      register: output_var
+
+    - name: task2 to store output in a file.
+      copy:
+        content: "{{ output_var }}"
+        dest: /tmp/meminfo.txt
+
+

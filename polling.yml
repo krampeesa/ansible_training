@@ -1,0 +1,19 @@
+---
+- name: play to work on polling
+  hosts: all
+  tasks:
+    - name: task to enter sleep command
+      command: sleep 15
+      async: 20
+      poll: 0
+      register: result
+
+    - name: run next command task
+      command: lsblk
+
+    - name: task to work on async status
+      async_status:
+        jid: "{{result.ansible_job_id}}"
+      retries: 4
+      delay: 5
+      until: result.finished

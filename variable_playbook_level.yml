@@ -1,0 +1,17 @@
+---
+- name: playbook to work with varibales inside plabook
+  hosts: all
+  vars:
+    var_pkg: httpd
+    var_state: latest
+    var_service: httpd
+  tasks:
+    - name: "Install {{ var_pkg }} package"
+      yum:
+        name: "{{ var_pkg }}"
+        state: "{{ var_state}}"
+
+    - name: Start {{ var_service }} 
+      service:
+        name: "{{ var_service }}"
+        state: started

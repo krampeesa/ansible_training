@@ -1,0 +1,8 @@
+---
+- name: Playbook for installing package using wget
+  hosts: all
+  tasks:
+    - name: Install Vscode
+      get_url:
+        url: http://10.0.5.1/labs/vscode.rpm
+        dest: /root/

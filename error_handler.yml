@@ -1,0 +1,27 @@
+---
+- name: playbook or httpd web page
+  hosts: all
+  force_handlers: true
+  tasks:
+    - name: Installing httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Configuring web page 
+      copy:
+        content: "Welcome to Web server Home Page-Handlers-1"
+        dest: /var/www/html/index.html
+      notify: change_in_config
+
+    - name: Task to create one more package
+      yum:
+        name: abc
+        state: present 
+
+  handlers:
+    - name: change_in_config
+      service:
+        name: httpd
+        state: restarted
+

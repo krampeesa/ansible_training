@@ -1,0 +1,12 @@
+---
+- name: play for group variable
+  hosts: all
+  tasks:
+    - name: "Task to install {{ var_service }}"
+      yum:
+        name: "{{ var_service }}"
+        state: present
+
+    - name: Tak to display hostvar
+      debug:
+        msg: "This data was came from host_var file : {{var_custom_content}}"

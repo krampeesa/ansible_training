@@ -1,0 +1,12 @@
+---
+- name: custom facts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: task to show custom facts
+      debug:
+        msg:
+          - " Server name is : {{ansible_fqdn}} "
+          - "Environment of server is {{ansible_local.custom.env.environment}}"
+          - "is it critical : {{ansible_local.custom.env.critical}}"
+

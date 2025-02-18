@@ -1,0 +1,17 @@
+---
+- name: playbook to get system info using facts
+  hosts: all
+  tasks:
+    - name: task to get details
+      setup:
+      register: hostinfo
+
+    - name: task to debug
+      debug:
+        msg:
+          - "Hostname is {{hostinfo.ansible_facts.ansible_fqdn}}"
+          - "Ip adress is {{hostinfo.ansible_facts.ansible_all_ipv4_addresses}}"
+          - "OS Destro is {{hostinfo.ansible_facts.ansible_distribution}}"
+            #- "OS version is {{hostinfo.ansible_facts.
+
+

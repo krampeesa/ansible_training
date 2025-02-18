@@ -1,0 +1,8 @@
+---
+- name: play to copy file
+  hosts: all
+  tasks:
+    - name: task to copy file to remote server
+      copy:
+        src: /etc/resolv.conf
+        dest: /tmp/kiran.txt

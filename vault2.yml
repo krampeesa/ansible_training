@@ -1,0 +1,12 @@
+---
+- name: play for vault practice
+  hosts: all
+  vars_files:
+    - passwordvarfile
+  tasks:
+    - name: tas to create user
+      user:
+        name: "{{username}}"
+        password: "{{ '{{password}}' |password_hash('sha512')}}"
+        state: present
+

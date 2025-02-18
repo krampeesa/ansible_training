@@ -1,0 +1,29 @@
+---
+- name: play to test command handler
+  hosts: node2.example.com
+  force_handlers: true
+  tasks:
+    - name: task to test command handler
+      command: useradd.sh
+      register: command_out
+      changed_when: '"user created successfully" in command_out.stdout'
+      notify: user_handler
+      
+    - name: task to debud
+      debug:
+        var: command_out
+
+    - name: task to check failed
+      fail:
+        msg: "User creation failed"
+      when: "'user creation failed' in command_out.stdout"
+      notify: user_error
+
+  handlers:
+     - name: user_handler
+       debug:
+          msg: "User creation completed successfully"
+
+     - name: user_error
+       debug:
+         msg: "User creation failed"
