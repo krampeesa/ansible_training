@@ -1,0 +1,1777 @@
+Welcome to TCS Exclusive Days  - Linux Automation with Ansible Batch 9
+Online shared etherPAD:
+https://etherpad.opendev.org/p/tcs-rjp-AB9jan25
+
+############Mid-Assignment Published#########################
+FeedBack link:  https://forms.office.com/r/nQUPZgZ4WY
+
+RJP LMS: https://www.rjpinfotek.com/course/ansibleb9
+UserName: TCSmailID
+Password: Ansible@1
+
+https://vlabs.rjpinfotek.com/
+
+username: Linux-x
+password: P@ssw0rd
+
+Username: student / student
+username: root / root123
+
+https://12factor.net/
+https://www.redhat.com/en/blog/12-factor-app
+https://digital.ai/learn/devsecops-periodic-table/
+https://upload.wikimedia.org/wikipedia/commons/a/ad/2023_Linux_Distributions_Timeline.svg
+https://kernel.org/
+
+https://fedoraproject.org/
+https://distrowatch.com/
+
+
+[student@localhost ~]$ command [options] arg...
+
+TASK1: remane hostnames to master/node1/node2.example
+hostnamectl hostname master
+done: shaj,Kiran Rampeesa,viswanath Gudikandula,Tammana Nagaraju,Ganesh Kota, Sadaf A. Qadir,Manish Patel, chakradhar,Kalyani Patil ; Ajin,Awani PriyaShashikala S;Rajkumar;srikanth, Suriya Sampath,Anil Narke,Nandhini C,SureshArivazhagan,surya sivasankar,surya vamsi komma, Vigneshwari, clement, Viraj, Hariharan.M
+
+
+Task2:  set name resolution to master, node1, node2 by editing /etc/hosts
+
+10.0.5.x master.example.com master
+10.0.5.y node1.example.com node1
+10.0.5.z node2.example.com node2
+Done: shaj, Tammana Nagaraju, Kiran Rampeesa,Rajkumar;Manish Patel ,viswanath Gudikandula,Sadaf A. Qadir,srikanth, GaneshKota,surya vamsi komma,Awani Priya,Kalyani,;Ajin,  Suriya SampathSurya Sivasankar, Arivazhagan Elumalai,Shashikala S,chakradhar, Nandhini, Vigneshwari, Suresh, clement, Viraj,Anil Narke, Hariharan.M
+
+check python installed : yum list installed python3
+[root@master ~]# yum install ansible
+ansible --version
+task3: install ansible in master server
+done:Ganesh Kota kalyani, Kiran Rampeesa,srikanth, Tamamna Nagaraju,viswanath Gudikandula,Awani Priya, clementArivazhagan Elumalai,Sadaf A. Qadir,Surya Sivasankar, Vigneshwari, Ajin, Shashikala S, Manish Patel,Suresh Ravi,surya vamsi komma, Suriya Sampath, chakradhar, Nandhini, Viraj;Rajkumar,Anil, Hariharan.M
+
+
+
+default config file:   config file = /etc/ansible/ansible.cfg
+
+Task4: create dev, prod, qc environments for ansible deployments create ansible.cfg using student user
+done:shaj, Kiran Rampeesa,Awani Priya, Arivazhagan Elumalai,chakradhar, komma surya vamsi, Suriya Sampath, Vigneshwari, Rajkumar,Surya Sivasankar,Ganesh Kota, kalyani, Viraj;Ajin,srikanthShashikala S,viswanath Gudikandula,clement,Sadaf, Tammana Nagaraju,Suresh,Manish,Anil, Nandhini, Hariharan.M
+
+
+
+Day 2 - 7/feb/25
+
+1. ANSIBLE_CONFIG
+2. local dir ansible.cfg
+3. users home dir .ansible.cfg
+4. default /etc/ansible/ansible.cfg
+
+Ansible:
+Eliminate repetition and simplify workflows
+Manage and maintain system configuration
+Continuously deploy complex software
+Perform zero-downtime rolling updates
+
+0-root, 1-199[redhat os], 200-999 serviceaccount, 1000+ user accounts
+
+Task5: create devops user account in node1 and node2
+done: Kiran Rampeesa,Awani Priya,Vigneshwari,clement,Anil,Tammana Nagaraju,chakradhar;Rajkumar;,Manish,srikanth,viswanath Gudikandula,Surya Sivasankar, Kalyani,Sadaf,Shashikala S, Viraj, Suriya Sampath; Ajin, Arivazhagan Elumalai, komma surya vamsi, Nandhini,Ganesh Kota, Hariharan.M
+
+
+Task6: set devops password, add sudoers file in /etc/sudoers.d/admins in node1 and node2
+[root@node1 sudoers.d]# cat admins 
+devops ALL=(ALL) NOPASSWD: ALL
+done: shaj,Tammana Nagaraju,Kiran Rampeesasrikanthclement,Rajkumar,Anil,chakradhar, Awani Priya,Sadaf,Kalyani,viswanath; Ajin,Vigneshwari,Suriya Sampath,Manish,Surya Sivasankar, Nandhini, Viraj,Arivazhagan Elumalai,GaneshKota, Suresh, komma surya vamsi,Shashikala S, Hariharan.M
+
+
+Task 7: enable key-based auth for devops user in node1 and node2
+step1: student@master : ssh-keyegn
+step2: ssh-copy-id devops@node1
+step3 ssh devops@nodex
+done:shaj,Vigneshwari, Rajkumar,Kiran RampeesaviswanathTammana Nagarajuclement,srikanth,Kalyani,Nandhini,chakradhar, Arivazhagan Elumalai; Ajin, Ganesh Kota,Surya Sivasankar, Suresh RaviAwani Priya,komma surya vamsi,,Suriya Sampath,Shashikala S,Sadaf,Anil Narke,Manish, Viraj, Hariharan.M
+
+
+101  nano devinventory.ini
+  102  cat devinventory.ini 
+  103  ansible-inventory 
+  104  ansible-inventory -i devinventory.ini 
+  105  ansible-inventory -i devinventory.ini --list
+  106  ansible-inventory -i devinventory.ini --graph
+  107  ansible all -i devinventory.ini --list-hosts
+  108  ansible web -i devinventory.ini --list-hosts
+  109  ansible db -i devinventory.ini --list-hosts
+  110  ansible appservers -i devinventory.ini --list-hosts
+  111  ansible routers -i devinventory.ini --list-hosts
+  112  ansible ungrouped -i devinventory.ini --list-hosts
+  113  ansible --help
+  114  ansible -i devinventory.ini --list-hosts all
+
+Task8: create inventory file in prod folder [web]-node1.example.com, [db]-node2.example.com, [servers]:web+db
+done:Rajkumar,kalyani,Kiran Rampeesa,Tammana Nagaraju,Suriya Sampath, ManishclementSurya Sivasankar,arivazhagan elumalai, Vigneshwari;Ajin,Ganesh Kota, Nandhini, komma surya vamsi,Shashikala S,sadaf, Viraj, Suresh, Anil Narke,Awani Priyaviswanathsrikanth,chakradhar, Hariharan.M
+
+Task9: create ansible.cfg pointing in inventory file
+[student@master prod]$ cat ansible.cfg 
+[defaults]
+inventory=/home/student/prod/prod.ini
+#ansible all --list-hosts
+
+done: Kiran Rampeesa,Manish,viswanath,Tammana Nagaraju,kalyani,Awani Priya,sadaf,Rajkumar,arivazhagan elumalai, VirajSurya Sivasankar,komma surya vams, Suriya Sampath, Nandhini, Ganesh Kota,Shashikala S;Ajin,chakradhar,clement,anil narke, Vigneshwarisrikanth, Hariharan.M
+
+
+[student@master prod]$ cat ansible.cfg 
+[defaults]
+inventory=/home/student/prod/prod.ini
+remote_user=devops
+ask_pass=false
+
+[privilege_escalation]
+become=true
+become_method=sudo
+become_user=root
+become_ask_pass=false
+
+
+ 104  ansible web -m command -a 'id' -u student -k
+  105  ansible servers -m command -a 'id' -u student -k
+  107  ansible servers -m command -a 'id' -u student -k
+  108  ansible servers -m command -a 'id' -u devops -k
+  109  ansible servers -m command -a 'id' -u devops 
+  110  ansible servers -m command -a 'id' 
+
+Task 10: update ansible.cfg with required remote user devops and escalation privleges
+done: Kiran Rampeesa;Ajin,Viswanath,sadaf,clementSurya Sivasankar, Nandhini, Ganesh Kota,Rajkumar,Kalyani, Anil Narke, Suriya Sampath,Vigneshwari,arivazhagan elumalai,Shashikala S, Suresh Awani Priya,komma surya vams,srikanth,Tammana Nagaraju,chakradhar, Viraj,Manish, Hariharan.M
+
+
+ 119  ansible servers -m command -a 'useradd app1'
+  120  ansible servers -m ping
+  121  ansible-config dump2
+  122  ansible web -m yum -a 'name=dialog state=latest'
+  123  ansible web -m yum -a 'name=dialog state=absent'
+
+task11: deploy dialog app in servers group.
+done:Kiran Rampeesa,Ganesh Kota, clement,kalyani, Nandhini, Vigneshwari, Suriya SampathSurya Sivasankar, Viraj,Tammana Nagaraju;Ajin,Manish,arivazhagan elumalai,Rajkumar,Shashikala S,sadaf, Hariharan.M
+
+
+Day 3 - 10/feb/25
+
+ansible-config dump --only-changed
+CONFIG_FILE() = /home/student/prod/ansible.cfg
+DEFAULT_ASK_PASS(/home/student/prod/ansible.cfg) = False
+DEFAULT_BECOME(/home/student/prod/ansible.cfg) = True
+DEFAULT_BECOME_ASK_PASS(/home/student/prod/ansible.cfg) = False
+DEFAULT_BECOME_METHOD(/home/student/prod/ansible.cfg) = sudo
+DEFAULT_BECOME_USER(/home/student/prod/ansible.cfg) = root
+DEFAULT_HOST_LIST(/home/student/prod/ansible.cfg) = ['/home/student/prod/prod.ini']
+DEFAULT_REMOTE_USER(/home/student/prod/ansible.cfg) = devops
+
+task12: create a file with content "this file created by ansible" /tmp/file1.txt, get the content also using ansible ad-hoc command
+done: kalyani,clement, Suriya Sampath,Manish,komma surya vamsi,Rajkumar,Kiran Rampeesa,Awani Priya,Tammana Nagaraju,sadaf,Vigneshwari,Hariharan.M, Shashikala S, Suresh Surya SivasankarAjinsrikanth,sadaf, Nandhini C,Anil
+
+[student@master prod]$ cat 1.ping.yml
+
+Task 13: create and test ping module using Playbook
+done:Kiran Rampeesa,Rajkumar,kalyani,Manish,komma surya vamsi,Anil,Ganesh Kota, Tammana Nagaraju,Awani Priya,sadaf, Suriya Sampath,Vigneshwari,arivazhagan elumalaiSurya Sivasankar,Shashikala SAjin;srikanthclement, Hariharan.M,sadaf, Suresh, Nandhini C
+
+    
+Task14: install httpd package, start service, create homepage, open firewall, test web site working fine [uri module]
+/var/www/html/index.html  >>>Welcome to webserver deployed using ansible
+
+[student@master prod]$ cat 3.webdeploy.yml 
+- name: Install and set home page on servers
+  hosts: servers
+  tasks:
+    - name: T1 - install web server package
+      package: 
+        name: httpd
+        state: present
+    - name: start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+[student@master prod]$ cat 3.webdeploy.yml 
+- name: Install and set home page on servers
+  hosts: servers
+  tasks:
+    - name: T1 - install web server package
+      package: 
+        name: httpd
+        state: present
+    - name: T2 start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: T3 create home page
+      copy:
+        content: "Welcome to web server deployed using ansible"
+        dest: /var/www/html/index.html
+    - name: T4 open http service in firewalld
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
+- name: play to test web sites
+  hosts: localhost
+  become: no
+  tasks:
+    - name: test connection server
+      uri:
+        url: http://node1.example.com
+        return_content: yes
+        status_code: 200
+,
+Done: komma surya vamsi,Manish,Kalyani, Kiran Rampeesa,Tammana Nagaraju, Vigneshwari,  Suresh Ravi, Suriya Sampth,Rajkumar;Ajin;Clement,arivazhagan elumalaiSurya Sivasankar,Shashikala S,Awani Priya, sadaf,viswanath,Anil,srikanth, Nandhini C
+
+Install vscode from using wget http://10.0.5.1/labs/vscode.rpm
+
+Task15: create sales group add salesmanager in to sales group
+done: Kiran Rampeesa,,Rajkumar,Kalyani,Shashikala S,Anil
+
+# https://yamlchecker.com/
+# https://onlinexmltools.com/convert-yaml-to-xml
+# https://jsonformatter.org/yaml-to-json
+#https://yamlvalidator.com/
+
+
+
+Day 4 - 11/feb/25
+
+
+ansible-inventory
+ansible-config
+ansible-doc
+ansible
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/uri_module.html
+
+Debug, register, facts, variable
+
+[student@master prod]$ cat 4.user-group.yml 
+- name: create group and add user to that group
+  hosts: servers
+  tasks:
+    - name: create group
+      group:
+        name: salesgroup
+        state: present
+    - name: create salesmanager
+      ansible.builtin.user:
+        name: salesmanager
+        shell: /bin/sh
+        groups: salesgroup
+Task16: create accgroup, create user acc1 with userid 3030, shell /bin/sh
+Done: Kiran Rampeesa,clement,Kalyani,Tammana Nagaraju, Rajkumar,Vigneshwari, Surya SivasankarArivazhagan Elumalai,komma surya vamsi, Viraj, Suriya Sampath;Ajin;Shashikala S,srikanth,chakradhar,Awani Priya,sadaf,viswanath,Anil Narke, Suresh Ravi, Nandhini C
+
+student@master prod]$ cat 5.command-shell.yml 
+- name: play command/shell
+  hosts: servers
+  tasks:
+    - name: use of command
+      command: id
+      register: id_result #out put saved to
+
+Task17: get free -h command output, save as a file in /tmp/freemem.txt in those target servers, use debug to display
+done: Rajkumar,Kalyani,komma surya vamsi,Anil Narke, Kiran Rampeesa, Suresh Ravi, Surya Sivasankar, Viraj, Suriya Sampath,Tammana Nagaraju,sadaf,VigneshwariClement,Shashikala S, Arivazhagan Elumalai;Ajin,Awani Priya, Nandhini C
+
+add following lines to ~/.bashrc @ the end
+alias ap='ansible-playbook'
+alias aps='ansible-playbook --syntax-check'
+alias apd='ansible-playbook -C'
+
+"ansible_distribution": "Ce
+ register
+    - name: debug use #get output ro terminal
+      debug:
+        #var: id_result
+        msg: "the output of previous task is {{ id_result.stdout }}   yyyyyyyyyyyyyyyyyyyyy "
+    - name: get the ip address
+      #command: ip ad sh |grep 10.0.
+      shell: ip ad sh |grep 10.0.ntOS"
+ansible_all_ipv4_addresses
+"ansible_fqdn": "node1.example.com"
+
+Task18:  gatherfacts of fqdn, ip add, OS distro, OSversion
+Done: Rajkumar, Vigneshwari,Arivazhagan Elumalai, komma surya vamsi, Shashikala S, Suresh Ravi Suriya Sampath, Viraj,sadaf,Kiran Rampeesa,Awani Priya,Tammana Nagaraju,Kalyani;Ajinclementsrikanth,Anil Narke,Awani Priya, Nandhini
+
+[student@master prod]$ cat 6.gatherfacts.yml 
+- name: gather facts of node1
+  hosts: servers
+  tasks:
+    - name: collect facts 
+      setup:
+      register: hostinfo
+    - name: pring gathered info
+      debug:
+        msg:
+          - "The host FQDN is {{ hostinfo.ansible_facts.ansible_fqdn }}"
+          - "The IP address of the host is {{ hostinfo.ansible_facts.ansible_all_ipv4_addresses }}"
+          - "The OS distro is  {{ hostinfo.ansible_facts.ansible_distribution }}"
+
+
+Custom_facts:
+cat /etc/ansible/facts.d/cf.fact 
+[dept]
+department: finance
+location: mumbai
+colour: red
+env: prod/dev
+
+
+Task 19: create with custom facts. node1 = dev, node2 = production. gather this info using playbook with debug - msg: server name, belongs to env
+Done: Kiran Rampeesa,komma surya vamsi,Shashikala S,Anil Narke,Arivazhagan Elumalai,Tammana NagarajuclementSurya Sivasankar, Viraj,Kalyani,Rajkumar,viswanath,Vigneshwari,Awani Priya,;Ajin, Nandhini
+
+
+
+Task 20: deploy dialog application to dev systems
+done: kalyani,Tammana Nagaraju,Arivazhagan Elumalaiclement,Kiran Rampeesa, Viraj,Anil Narke,sadaf,Rajkumar,komma surya vamsi,Shashikala S,Vigneshwari
+
+
+[student@master prod]$ cat 9.variables1.yml 
+- name: Install and set home page on servers
+  hosts: servers
+  tasks:
+    - name: "T1 - install web server {{ pkg1 }} package"
+      package: 
+        name: "{{ pkg1 }}"
+        state: present
+    - name: "T2 start {{ pkg1 }} service"
+      service:
+        name: "{{ pkg1 }}"
+        state: started
+        enabled: true
+
+[student@master prod]$ cat prod.ini 
+10.0.5.25
+node34
+
+[web]
+node1.example.com
+
+
+[db]
+node2.example.com
+
+[servers:children]
+web
+db
+
+[servers:vars]
+pkg1= httpd
+#group vars #
+[apps]
+app[301:310].example.com
+
+Task21: Test group vars in inventory
+done: Kalyani, Kiran Rampeesa, VirajsrikanthSurya Sivasankar,komma surya vamsi,Tammana Nagarajuclement,Rajkumar, Vigneshwari,Shashikala S, Suriya Sampath;Ajin, Nandhini
+
+task22: test with host_vars/hostname variable
+done: Tammana Nagaraju, Shashikala S,Kiran Rampeesa,Rajkumar,Kalyani
+
+Day 5 - 12/feb/25
+
+Task23: create/deploy webservers with custom content with web page, use group_vars, host_vars dir - httpd/nginx(servers)
+Done: Kiran Rampeesa,Vigneshwari, Shashikala S. Tammana Nagarajuhttps:// VirajSurya Sivasankar,Kalyani,Awani Priya,Rajkumar,surya vamsiclement,Anil;Ajin,sadaf, Suriya Sampathsrikanth,Arivazhagan Elumalai
+[student@master prod]$ cat 10.deploywebvars.yml 
+- name: "Install web server {{ app }} and set home page on servers"
+  hosts: servers
+  tasks:
+    - name: "T1 - install web server package {{ app }}"
+      package: 
+        name: "{{ app }}"
+        state: present
+    - name: "T2 start {{ servicename }} service"
+      service:
+        name: "{{ servicename }}"
+        state: started
+        enabled: true
+    - name: "T3 create home page in {{ hppath }}"
+      copy:
+        content: "{{ webcontent }}"
+        dest: "{{ hppath }}/index.html"
+    - name: "T4 open web service port in firewalld {{ webport }}"
+      ansible.posix.firewalld:
+        port: "{{ webport}}"
+        state: enabled
+        permanent: true
+        immediate: true
+         [student@master prod]$ cat group_vars/servers 
+app: nginx
+servicename: nginx
+#hppath: /var/www/html
+hppath: /usr/share/nginx/html #nginx default HP path#
+webport: 80/tcp
+
+[student@master prod]$ cat host_vars/node1.example.com 
+webcontent: "Welcome to web server 111111"
+#webport: 88/tcp
+
+[student@master prod]$ cat host_vars/node2.example.com 
+webcontent: "Welcome to web server 222222"
+
+
+[student@master prod]$ cat 12.playbookmultivars.yml 
+- name: install / remove web app pack
+  hosts: servers
+  vars:
+    pack: httpd
+    deploy: latest # for removal use absent
+    serv: httpd
+  tasks:
+    - name: "T1 install {{pack}}"
+      vars: 
+        pack: nginx
+      yum:
+        name: "{{ pack }}"
+        state: "{{ deploy }}" 
+    - name: service start
+      service:  
+        name: "{{ serv }}"
+        enabled: true
+      vars:
+        serv: nginx
+
+13.Play-vars-priority.yml
+- name: testing variable priority
+  hosts: servers
+  vars:
+    pkg1: from-playbook-playlevel
+  tasks:
+    - name: get id
+      command: id
+      register: id_out
+    - name: using debug
+      vars:
+        pkg1: from-tasklevel-vars
+      debug:
+        msg:
+          - " this var taken from {{ pkg1 }}"
+
+
+[student@master prod]$ cat 14.vars-file.yml 
+- name: install app
+  hosts: servers
+  vars_files:
+    - varfile #/path/to/file
+  tasks:
+    - name: install app
+      yum:
+        name: "{{ p1 }}"
+        state: present
+Task24: use vars_files variable deploy app
+done: kalyani,Kiran Rampeesa,Vigneshwari,Rajkumar,Shashikala S,Awani priya;Ajin, Suriya Sampath,sadaf,clementSurya Sivasankar, Tammana Nagaraju,komma surya vamsi,arivazhagn elumala,viswanathsrikanth Viraj,Anil, Nandhini
+
+Variables priority
+inv: [group:vars] k=value - 8 
+gourp_vars/groupname k: value - 7
+inv: host k=value - 6
+host_vars/hostname k: value - 5
+play: vars - 4 
+vars_files: filename - 3
+task: vars - 2
+command level -e (extra_vars) - 1
+
+Using Loop
+[student@master prod]$ cat 15.multiusercreation-loop.yml 
+- name: create multiple users
+  hosts: node2.example.com
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - lu1
+        - lu2
+        - lu3
+
+Task25: create appdata, dbdata, datafolder under /tmp folder in servers- use loop function
+done: Rajkumar,Vigneshwari,komma surya vamsiarivazhagan, Kiran Rampeesaclement, Ajin;Kalyani,sadaf,Anil Viraj,Tammana Nagaraju,Shashikala S, Suriya Sampathsurya ,viswanath, Nandhini
+
+
+all labfiles in http://10.0.5.1/labs/
+
+[student@master prod]$ cat 15.multiusercreation-loop.yml 
+- name: create multiple users
+  hosts: node2.example.com
+  vars: 
+    users:
+      - lu11
+      - lu12
+      - lu13
+    dirs:
+      - appdata
+      - dbdata
+      - datafolder
+
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users }}"
+        # - lu1
+        # - lu2
+        # - lu3
+    - name: create folders
+      file: 
+        path: "/tmp/{{ item }}"
+        state: directory
+      loop: "{{ dirs }}"
+      
+      Task26: create multiple users using vars_files and loop plugins
+      done: Rajkumar,Vigneshwari, VirajSurya Sivasankar,sadaf,arivazhagan, Kiran Rampeesa,Shashikala S, Suriya Sampath;Ajin;kalyani,Tammana Nagarajuclement,komma surya vamsi, Nandhini
+
+
+[student@master prod]$ cat 17.user-items.yml 
+- name: create multiple users
+  hosts: node2.example.com
+  vars_files:
+    - 17userlist
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item.username }}"
+        comment: "{{ item.comment }}"
+        shell: "{{ item.shell }}"
+        state: present
+      loop: "{{ users }}"
+      
+ [student@master prod]$ cat 17userlist 
+users: 
+    - username: lu31
+      comment: "LocalUser13"
+      shell: /bin/sh
+    
+    - username: lu32
+      comment: "devopsuseryyy 32"
+      shell: /bin/bash
+    
+    - username: lu33
+      comment: "Backup User 33"
+      shell: /bin/nologin 
+      
+      Task 27: create user accounts with password
+      done: Shashikala S, Suriya Sampath,Kiran,Tammana Nagaraju,Kalyani,Vigneshwari
+          
+          [student@master prod]$ cat 18.user-password-items.yml 
+- name: create multiple users
+  hosts: node2.example.com
+  vars_files:
+    - 17userlist
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item.username }}"
+        comment: "{{ item.comment }}"
+        shell: "{{ item.shell }}"
+        state: present
+        password: "{{ item.password | password_hash('sha512')}}"
+      loop: "{{ users }}"
+      
+
+Day 6 - 13/feb/25
+
+
+
+[student@master prod]$ cat 18.user-password-items.yml 
+- name: create multiple users
+  hosts: node2.example.com
+  vars_files:
+    - 17userlistencrypted
+    
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item.username }}"
+        comment: "{{ item.comment }}"
+        shell: "{{ item.shell }}"
+        state: present
+        password: "{{ item.password | password_hash('sha512')}}"
+      loop: "{{ users }}"
+
+[student@master prod]$ cat 17userlistencrypted 
+$ANSIBLE_VAULT;1.1;AES256
+39336532383536346166363366633030626236356435613061633232326430373331646565353964
+3438313232373330326465656230393931363064313263390a653732343034393066363737376338
+31373834366533626434313739323566626438666164383166643961323837373330323464343534
+3939396137653038380a333164386464623232333030343665373965653739623634313433333262
+62653065643431373062303538383131306232666638613835363339626166623931303962663938
+36666136386564623638396338653030656431303662623061393531373437346335303038353733
+63383834656331633330643561623265616435333761323062623831323838393765323639373862
+32393963313662356164343134656365383939396532356533643364306233356432326433663064
+34386463333830616339666638663064336533316165633732623261653462313936623761323338
+38383937383133613465326536633633333038316534663034386432303563363566356536306439
+63623836656236393863323036666535636334646630646335613662353631613334366466623032
+33363536643130373734363239303363343434343561656563626466623539356330656566643962
+39303237653935363263396561643066656130656665653239316532626665343837656165653333
+32353136613363386239333838393665393132356662656462613930333332363235313130613362
+36626361326164393535353335333638623063313465373066353933313061623763653736643561
+32663464373936646138663930306334373663643065323464323762303863353061316331306531
+31653536343034653336646562663239633335396132396461643434356162616436336434643938
+34336438313137653431653431653131303230643334333964396362636365343330356465313064
+39306432336437653438
+
+ansible-playbook 18.user-password-items.yml --ask-vault-password
+
+Task28: create users with password file encrypted/protected with ansible-vault
+Done: Kiran Rampeesa,Tammana Nagaraju, Shashikala S,Suriya Sampath,Awani Priya,clement,Vigneshwari;AjinSurya Sivasankar,Arivazhagan, Viraj, Nandhini, sadaf 
+
+
+- name: Create user directories and log files
+  hosts: localhost
+  gather_facts: no
+  vars: 
+    list_one:
+      - AA
+      - BB 
+      - CC
+    list_two:
+      - 11
+      - 22
+      - 33
+  tasks:
+    - name: Ensure directories exist
+      # file:
+      #   path: "/home/{{ item[0] }}/logs"
+      #   state: directory
+      #   mode: '0755'
+      debug:
+        msg:
+          - "creating directory: /home/{{ item[0]}}/logs/{{ item[1] }}"
+      with_nested:
+        - [ "alice", "bob", "charlie" ]
+        - [ "app1", "app2" ]
+    
+    - name: with_nested -> loop
+      ansible.builtin.debug:
+          msg: "{{ item.0 }} - {{ item.1 }}"
+      loop: "{{ list_one|product(list_two)|list }}"
+      
+      
+      Task29: install http if RedHat, nginx if debian os family
+      Done: Kalyani,Nandhini,Kiran Rampeesa Viraj,Rajkumar,viswanath,Vigneshwari, Suriya Sampath,sadaf,Ajin,Arivazhagan,Tammana Nagaraju,Awani Priya,clement,Chakradhar, Shashikala SsrikanthSurya Sivasankar,Anil
+      [student@master prod]$ cat 20.when-facts.yml 
+- name: install web server based on OS_family
+  hosts: servers
+  tasks: 
+    - name: install httpd if RedHat family OS
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+    - name: install httpd if Debian family OS
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_os_family == "Debian"
+      
+      Task30: deploy httpd if OS_family RedHat and  version >8
+      clement, Kalyani,Kiran,Vigneshwari,sadaf,Shashikala SSurya Sivasankar, Nandhini,Anil, Suriya Sampath;Ajin
+      
+      
+      [student@master prod]$ cat 23.task-fail.yml 
+- name: testing task failures
+  hosts: servers
+  ignore_errors: yes
+  tasks:
+    - name: install an "app1"
+      yum:
+        name: dialogggggg
+        state: latest
+      #ignore_errors: true
+    - name: create user
+      user:
+        names: ops111
+        state: present
+    - name: create a file
+      copy:
+        content: "test message"
+        dest: /tmp/test.txt
+        
+    Task31: check ignore errors in task level and play level
+    done: Nandhini ,Kiran Rampeesa,Tammana Nagaraju,Awani Priya, Viraj,Vigneshwari,Shashikala S, Suriya Sampathclement,Rajkumar,Anil,sadaf,ArivazhaganSurya Sivasakar,kalyani,viswanathsrikanth;Ajin,Chakradhar
+    
+    
+    Taks32: get httpd service status, if stopped then start service or ignore
+     done:Rajkumar, Kiran Rampeesa,kalyani, Nandhini,Vigneshwari,Arivazhagan;Ajin, Shashikala S,Awani priya,Surya sivasankarclement, Tammana Nagaraju,Viswanath, Suriya Sampathsrikanth, Viraj
+   
+[student@master prod]$ cat 24.service-check.yml 
+- name: check service status and start service
+  hosts: servers
+  tasks:
+    - name: check status of httpd
+      shell: systemctl status httpd.service
+      register: httpd_status
+      ignore_errors: yes
+    - name: debug status
+      debug:
+        var: httpd_status
+    - name: start service if status inactive
+      shell: systemctl start httpd.service
+      when: "'inactive' in httpd_status.stdout"
+
+    - name: get systemd status of httpd
+      systemd:
+        name: httpd
+      register: current_status
+    - name: display current status
+      debug:
+        var: current_status
+        
+        
+        
+  https://docs.ansible.com/ansible/2.7/user_guide/playbooks_filters.html
+  https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_filters.html
+        
+    
+Day 7 - 14/feb/25 
+
+
+Task33: install httpd, copy[content, dest], firewall http open, restart httpd service
+done: Kiran Rampeesa,Vigneshwari, Shashikala S,Tammana Nagaraju, Nandhini,Arivazhagan,surya vamsisurya sivasankar,Kalyani, Viraj;Ajin,Rajkumar
+
+[student@master prod]$ cat 26.task-handlers.yml 
+- name: Install and set home page on servers
+  hosts: servers
+  tasks:
+    - name: T1 - install web server package
+      package: 
+        name: httpd
+        state: present
+    # - name: T222 restart_httpd
+    #   service:
+    #     name: httpd
+    #     state: restarted
+    #     enabled: true
+    - name: T2 create home page
+      copy:
+        content: "Welcome to web server deployed using ansible - change4"
+        dest: /var/www/html/index1.html
+      notify: H1_restart_httpd
+    - name: T3 open http service in firewalld
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+    
+  
+  handlers:
+    - name: H1_restart_httpd
+      service:
+        name: httpd
+        state: restarted
+        enabled: true
+      notify: H1_restart_mariadb 
+    - name: H1_restart_mariadb
+      service:
+        name: mariadb
+        state: restarted
+        enabled: true
+        
+        Task34: use task handler to restart httpd service if change happend in task2
+        Kiran Rampeesa,Shashikala S,Arivazhagan,viswanath,Nandhini,Tammana Nagaraju,kalyaniSurya Sivassakarsrikanth, Suriya Sampathclement;Ajin,Chakradhar,komma surya vamsi,Awani Priya,Rajkumar,Vigneshwari,Manish, Viraj
+        
+
+[student@master prod]$ cat 27.task-handlers-error.yml
+- name: Install and set home page on servers
+  hosts: servers
+  force_handlers: true
+  tasks:
+    - name: T1 - install web server package
+      package: 
+        name: httpd
+        state: present
+    # - name: T222 restart_httpd
+    #   service:
+    #     name: httpd
+    #     state: restarted
+    #     enabled: true
+    - name: T2 create home page
+      copy:
+        content: "Welcome to web server deployed using ansible - change6"
+        dest: /var/www/html/index1.html
+      notify: H1_restart_httpd
+    - name: creating an erroring tasks
+      yum:
+        name: notaapp
+        state: present
+    - name: T3 open http service in firewalld
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+    
+  
+  handlers:
+    - name: H1_restart_httpd
+      service:
+        name: httpd
+        state: restarted
+        enabled: true
+  #    notify: H1_restart_mariadb 
+    - name: H1_restart_mariadb
+      service:
+        name: mariadb
+        state: restarted
+        enabled: true
+Task35: forced_handlers in case of erroring task
+Done: Kiran Rampeesa.Shashikala S,Vigneshwari,Arivazhagan,Rajkumar,Nandhini,kalyani,clement Suriya Sampath, VirajSurya Sivasankar,Awani Priya,Tammana Nagaraju,Manish,komma surya vamsi;Ajin
+
+[student@master prod]$ cat 29.changed-task.yml 
+- name: get results
+  hosts: node2.example.com
+  tasks:
+    - name: execute user creation script
+      command: uc.sh
+      register: result
+      changed_when: "'user created successfully' in result.stdout"
+    - name: debug results info
+      debug:
+        var: result
+
+[root@node2 ~]# cat /bin/uc.sh
+#!/bin/bash
+useradd d5
+if [ $? -eq 0 ]
+then
+    echo "user created successfully"
+else
+    echo "user creation failed"
+fi
+task36: changed_when task using specific condition
+ Nandhini,Viraj,Shashikala,srikanthkiranSuryaSivasankar,kalyani,kommasuryavamsi,Tammana;AjinNagaraju,viswanath,Vigneshwari,Manish,Rajkumar,Arivazhagan, Awani Priya,Suriya Sampath,Chakradhar
+
+
+
+[student@master prod]$ cat 30.changed-task-fail-handler.yml 
+- name: get results
+  hosts: node2.example.com
+  force_handlers: true
+  tasks:
+    - name: execute user creation script
+      command: uc.sh
+      register: result
+      changed_when: "'user created successfully' in result.stdout"
+      notify: UCdone
+    # - name: debug results info
+    #   debug:
+    #     var: result
+    - name: using fail module
+      fail: 
+        msg: "user creation failed"
+      when: "'user creation failed' in result.stdout"
+  handlers:
+    - name: UCdone
+      debug:
+        msg: "------------User creation done-------"
+
+Task 37:  test - fail, changed_when,forcerd_handler, handlers
+done: Kalyani,komma surya vamsi, Kiran Rampeesa, Suriya Sampath,Manish,Nandhini,Ajin, Shashikala S,VigneshwariSurya Sivasankar,Arivazhaganclement, Tammana Nagaraju Viraj,Rajkumar
+
+
+create if file doesnot exist
+filecreation.yml
+[student@master prod]$ cat 32.file-creation.yml 
+- name: create if file doesnot exist
+  hosts: servers
+  tasks:
+    - name: check file exists
+      stat:
+        path: /tmp/example.txt
+      register: filestat
+    # - name: debug file stat
+    #   debug:
+    #     var: filestat
+    - name: create the /tmp/example.txt
+      copy:
+        content: "hello, ansible-file updated - new"
+        dest: /tmp/example.txt
+      when: not filestat.stat.exists
+
+[student@master prod]$ cat 33.failed_when.yml 
+- name: get results
+  hosts: node2.example.com
+  force_handlers: true
+  tasks:
+    - name: execute user creation script
+      command: uc.sh
+      register: result
+      #changed_when: "'user created successfully' in result.stdout"
+      failed_when: "'user creation failed' in result.stdout"
+
+
+task38: get systems list with lessthan 4GBram, report totalmemory available
+done: Viraj, Tammana Nagaraju,Kiran Rampeesa, Shashikala S,Rajkumar,kalyani,Manishclement,komma surya vamsi
+    
+    
+    [student@master prod]$ cat 35.file-present.yml 
+- name: check file existance
+  hosts: servers
+  tasks:
+    - name: check file
+      command: "ls /filenotthere"
+      register: lsout
+      failed_when: lsout.rc == 2
+      ignore_errors: yes
+    # - name: debug data
+    #   debug:
+    #     var: lsout
+    
+    [student@master prod]$ cat 36-block-rescue-always.yml 
+- name: block-rescue-always
+  hosts: node2.example.com
+  tasks:  
+    - name: main block
+      block:
+        - name: task create a file
+          file: 
+            path: /tmp/f1.txt
+            state: touch
+        - name: execute command
+          #command: /bin/false
+          command: id
+        - name: task3 will not if task2 fails
+          file:
+            path: /tmp/f2.txt
+            state: touch
+      rescue:
+        - name: rescue task1
+          file:
+            path: /tmp/f1.txt
+            state: absent
+      always:
+        - name: always run
+          debug:
+            msg: "this will run always"
+            
+
+
+Day 8 - 17/feb/25
+
+
+Block-rescue-Always
+---
+- name: Safe Package Update and Cleanup
+  hosts: linux_servers
+  become: yes
+  vars:
+    email_to: "admin@example.com"
+    temp_file: "/tmp/update-lock"
+
+  tasks:
+    - name: Perform critical system update
+      block:
+        - name: Create temporary lock file
+          file:
+            path: "{{ temp_file }}"
+            state: touch
+            mode: '0644'
+
+        - name: Update all packages
+          yum:
+            name: "*"
+            state: latest
+            update_cache: yes
+
+        - name: Verify Nginx is running after update
+          service:
+            name: nginx
+            state: started
+            enabled: yes
+
+      rescue:
+        - name: Send failure alert
+          debug:
+            msg: "CRITICAL: Package update failed on {{ inventory_hostname }}!"
+          
+        - name: Send email notification
+          command: >
+            mail -s "Update Failed: {{ inventory_hostname }}" {{ email_to }}
+            <<< "Failed to apply updates. Manual intervention required."
+
+        - name: Rollback last transaction (for DNF/Yum systems)
+          command: yum history rollback last -y
+          when: ansible_pkg_mgr in ['yum', 'dnf']
+
+      always:
+        - name: Remove temporary lock file
+          file:
+            path: "{{ temp_file }}"
+            state: absent
+
+        - name: Log update status
+          debug:
+            msg: "Update process completed (successfully or with errors) on {{ inventory_hostname }}"
+
+[student@master prod]$ cat 37.copy-remote.yml 
+- name: copy using copy module
+  hosts: servers
+  tasks: 
+    - name: copy from control node to managednodes
+      copy: 
+        src: cal25.txt
+        dest: /tmp/cal25.txt
+
+Task39: copy from control node to servers some file
+done:Kiran Rampeesa,Shashikala S;Ajin,Nandhini, Viraj,Rajkumarclement, Suriya Sampath,Arivazhagan,kalyani, VigneshwariSurya Sivasankar,Manish,surya
+
+
+TAsk40: use remote_src: yes usage and create playbook
+done: Kiran Rampeesa,Rajkumar,clement,kalyani,Tammana Nagaraju,Shashikala S,Manish Viraj, Suriya Sampth,NandhiniSurya Sivasankar;Ajin,surya,Vigneshwari
+
+
+   38.fetchdata.yml 
+- name: copy using copy module
+  hosts: servers
+  tasks: 
+    - name: copy from control node to managednodes
+      fetch: 
+        src: /tmp/diskfree.txt
+        dest: /tmp/  #controllernode path
+
+Task41: use fetch module with flat: yes    
+Done:Rajkumar, Shashikala S, Viraj,kalyani,Manish,Ajin, Suriya SampathclementSurya Sivasakar,Arivazhagan,Vigneshwari,surya,Tammana Nagaraju
+
+
+
+Task42: source html page from http://10.0.5.1/source.html, deply web server with that home page, retry, until
+Kiran Rampeesa,,kalyani,Rajkumar,Vigneshwari,Shashikala S,NandhiniSurya Sivasankar;Ajin,Arivazhagan, Suriya Sampath,Manish,Tammana Nagarajuclement
+
+[student@master prod]$ cat 40.retryusing-get-url.yml 
+- name: get from 10.0.5.1/source.html build web sites
+  hosts: servers
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+    - name: get the 10.0.5.1/source.html
+      get_url:
+        url: http://10.0.5.1/source.html
+        dest: /var/www/html/index.html
+      register: download_result
+      until: download_result is succeeded
+      retries: 3
+      delay: 5
+    - name: start the service
+      service:
+        name: httpd
+        state: started
+
+
+[student@master prod]$ cat 41.lineinfile.yml 
+- name: get from 10.0.5.1/source.html build web sites
+  hosts: servers
+  tasks:
+    - name: append a new line to afile
+      lineinfile:
+        path: /etc/motd
+        line: "-----------------------------Ansible managed Node------------------------"
+        
+task43: append a line  in /etc/httpd/conf/httpd.conf "#this web server managed using ansible-----appended line" 
+done: Kiran Rampeesa,Kalyani,Shashikala S,Rajkumarclement,Nandhini, Viraj,VigneshwariSurya Sivasankar,Tammana Nagaraju,Arivazhagan,Manish, Suriya Sampath;Ajin,surya,Anil Narke
+      
+      
+      
+      [student@master prod]$ cat 43.replacetext.yml 
+- name: modify config file
+  hosts: servers
+  tasks:
+    - name: modify a regex pattern with value
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        line: ServerAdmin admin@tcs.com
+        regexp: "^ServerA*"
+        state: present  
+        
+        
+cat 44.blockinfile.yml 
+- name: testing / adding block in file
+  hosts: servers
+  tasks:  
+    - name: insert a block in /etc/motd
+      blockinfile:
+        path: /etc/motd
+        block: |
+          Firstline to add in /etc/motd
+          2nd line using block 
+        #marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+        
+        
+        Task44: lab - blockinfile
+        Done: Kalyani, Kiran Rampeesa,Shashikala S,Manish,Rajkumar,,,Arivazhagan, Virajclement,Suriya Sampath,srikanth,Vigneshwari,Tammana NagarajuSurya Sivasankar,Nandhini,Ajin,Anil Narke
+        
+        
+
+add allow rule before deny rule
+ ---
+- name: Insert multiple rules before last deny
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Add custom rules before the last deny
+      blockinfile:
+        path: /etc/security/access.conf
+        insertbefore: 'deny all'
+        block: |
+          allow user1
+          allow user2
+        #marker: "# BEGIN ALLOW RULES"
+    
+        
+[student@master prod]$ cat motd.j2 
+****************************************************************************************
+            Welcome to {{ ansible_facts.hostname }}                                     
+            IP address: {{ ansible_facts.default_ipv4.address }}
+----------------------------------------------------------------------------------------
+             THIS system is managed By ServerAdmin@tcs.com
+----------------------------------------------------------------------------------------        
+        
+    [student@master prod]$ cat 45.jinja.yml 
+- name: using jinja2 template
+  hosts: servers
+  tasks: 
+    - name: using jinja2 template
+      template:
+        src: motd.j2
+        dest: /etc/motd
+        backup: yes
+        
+        
+        TAsk 45. create motd with Hostname, IP address, OS_family - version
+        done:  Viraj,Kiran Rampeesa,Vigneshwari,komma surya vamsi,KalyaniSurya Sivasankarclement,Rajkumar,Arivazhagan, Suriya Sampath,Tammana Nagaraju,Shashikala S,Anil Narke,srikanth,Manish,Nandhini,srikanth
+            
+template:1       
+127.0.0.1   localhost localhost.localdomain
+{% for host in groups['all'] %}
+{{ hostvars[host].ansible_default_ipv4.address }}  {{ hostvars[host].ansible_hostname }}
+{% endfor %}    
+
+
+Day 9 - 18/feb/25
+
+Roles / Ansible Galaxy >>>
+
+Playbook ... Import/include
+
+[student@master prod]$ cat 47.allinone.yml 
+- name: test playbook
+  hosts: servers
+  vars:
+    pkg: httpd
+    file: /var/www/html/index.html
+    srv: httpd
+  tasks:
+    - name: install package {{ pkg }}
+      package:
+        name: "{{ pkg }}"
+        state: latest
+    
+    - name: set homepage content {{ homepage }}
+      copy:
+        content: " {{ ansible_fqdn }} has been deployed with ansible"
+        dest: "{{ file }}" 
+    
+    - name: start the service {{ srv }}
+      service:
+        name: "{{ srv }}"
+
+Import_tasks
+[student@master prod]$ cat tasks/install.yml 
+- name: install package {{ pkg }}
+  package:
+    name: "{{ pkg }}"
+    state: latest
+
+[student@master prod]$ cat tasks/homepage.yml 
+- name: set homepage content {{ homepage }}
+  copy:
+    content: " {{ ansible_fqdn }} has been deployed with ansible"
+    dest: "{{ file }}"
+
+[student@master prod]$ cat tasks/service.yml 
+- name: start the service {{ srv }}
+  service:
+    name: "{{ srv }}"
+    
+[student@master prod]$ cat 48.import-tasks.yml 
+- name: testing import tasks using file
+  hosts: node1.example.com
+  tasks:
+    - name: import task of installing package
+      import_tasks: tasks/install.yml
+      vars:
+        pkg: httpd  #nginx 
+
+    - name: import task of setting hp 
+      import_tasks: tasks/homepage.yml
+      vars:
+        file: /var/www/html/index.html
+    
+    - name: import task service
+      import_tasks: tasks/service.yml
+      vars:
+        srv: httpd
+----------
+---
+- name: play to work on import tasks
+  hosts: all
+  vars:
+    dest_path_httpd: /var/www/html/index.html
+    dest_path_nginx: /var/www/html/index.html 
+  vars_prompt:
+    - name: package
+      prompt: "Provide package which you want to install httpd/nginx"
+      private: false
+    - name: state
+      prompt: "provide state: latest/present/absent"
+      private: false
+  tasks:
+    - name: task to install httpd/nginx
+      import_tasks: tasks/install.yml
+
+    - name: copy content for nginx
+      import_tasks: tasks/content_nginx.yml
+      when: package == "nginx"
+
+    - name: copy content for httpd
+      import_tasks: tasks/content_httpd.yml
+      when: package == "httpd"
+
+
+
+task46: create playbook with import_tasks to deply packages (httpd/nginx) ---- state: latest/absent(prompt)
+done: Kiran Rampeesa,KalyaniSurya Sivasankar,Rajkumar, Viraj,surya vamsi,Nandhini,Shashikala S clement;Ajin,Arivazhagan,Vigneshwari,Tammana Nagaraju,Manish,Anil Narke, Suriya Sampath
+
+INCLUDE_TASKS
+
+[student@master prod]$ cat 49.include-tasks.yml 
+- name: testing import tasks using file
+  hosts: node1.example.com
+  tasks:
+    - name: install dialog direct task
+      package: 
+        name: dialog
+        state: present
+    - name: include task from a file
+      include_tasks: tasks/install.yml
+      vars:
+        pkg: httpd
+      when: ansible_os_family == "RedHat"
+
+    - name: start service
+      include_tasks: tasks/service.yml
+      vars:
+        srv: httpd
+Task47: test include_tasks
+done: Nandhini,Shashikala S,Kiran,komma surya vamsiSurya ,Kalyani;Ajin;Sivasankar,Manish,Vigneshwari,Arivazhaganclement Viraj, Suriya Sampath,tammana Nagaraju
+
+
+mkdir roles
+set roles_path in ansible.cfg
+ansible-galaxy role init [rolename]
+ansible-galaxy role list
+use roles in playbook 
+
+[student@master prod]$ cat 50.webrole-deply.yml 
+- name: deploying web roles
+  hosts: node1.example.com
+  roles:
+    - webrole
+
+task48:create and deply web role with custome web page content
+done: Kiran Rampeesa, Viraj,Kalyani, Shashikala S,clement,Nandhini,Anil Narke, Suriya Sampath,komma surya vamsi,Tammana Nagaraju,Vigneshwari,Arivazhagan
+
+Day 10 - 19/feb/25
+
+By default, Ansible will look in most role directories for a main.yml file for relevant content (also main.yaml and main):
+tasks/main.yml - A list of tasks that the role provides to the play for execution.
+handlers/main.yml - handlers that are imported into the parent play for use by the role or other roles and tasks in the play.
+defaults/main.yml - very low precedence values for variables provided by the role (see Using Variables for more information). A role’s own defaults will take priority over other role’s defaults, but any/all other variable sources will override this.
+vars/main.yml - high precedence variables provided by the role to the play (see Using Variables for more information).
+files/stuff.txt - one or more files that are available for the role and it’s children.
+templates/something.j2 - templates to use in the role or child roles.
+meta/main.yml - metadata for the role, including role dependencies and optional Galaxy metadata such as platforms supported. This is required for uploading into galaxy as a standalone role, but not for using the role in your play.
+    
+
+
+
+
+create ansibleuser on target servers
+ssh-keygen, ssh-copy-id ssh ansibleuser@target
+target create sudoers file
+
+Task49: create ansibleuser, keybased auth, sudeors ALL
+modules to use: user, autherized_key, copy/lineinfile
+Kiran Rampeesa, Rajkumar,Surya Sivasankar,Tammana Nagaraju,Manish, Suriya Sampath,ShashikalaS,Viraj,Kalyani;Ajin;clement,Arivazhagan,Nandhini,Vigneshwari
+
+
+[student@master prod]$ cat 51.ansibleuser.yml 
+- name: create ansible user, keybased auth & sudoers
+  hosts: servers
+  tasks: 
+    - name: create ansible user
+      user:
+        name: ansibleuser
+        state: present
+    - name: copy / enable keybased auth
+      authorized_key:
+        user: ansibleuser
+        state: present
+        key: "{{ lookup('file', '/home/student/.ssh/id_rsa.pub') }}"
+    - name: sudoers to ansibleuser
+      copy: 
+        content: "ansibleuser ALL=(ALL) NOPASSWD: ALL"
+        dest: /etc/sudoers.d/ansibleuser
+        mode: 0440
+
+
+
+
+TASK 52: create a scheduled task using playbook everyminute update timestamp in a file
+Viraj,Kiran Rampeesa,Tammana Nagaraju,kalyani,RajkumarSurya Sivasankar,Vigneshwari,Nandhini,Manish,Shashikala S,Vigneshwari,viswanath
+
+[student@master prod]$ cat 52.partitionlab.yml 
+- name: create a partition
+  hosts: node1.example.com
+  tasks:
+    - name: create partition
+      community.general.parted:
+        device: /dev/sdb
+        number: 1
+        state: present
+        part_end: 2GiB
+    - name: format FS
+      filesystem:
+        fstype: ext4
+        dev: /dev/sdb1
+        force: yes
+    - name: create salesdata folder
+      file:
+        path: /salesdata
+        state: directory
+    - name: mount sdb1 to /salesdata
+      mount:
+        path: /salesdata
+        src: /dev/sdb1
+        fstype: ext4
+        state: mounted
+
+
+
+TASK53: Create partition 2GiB salesdata -/salesdata(ext4) & 3GiB proddata /proddata(xfs)  using /dev/sdb in node1
+done:  Viraj,Manish,Kiran Rampeesa,Tammana Nagaraju,Arivazhagan;Ajin, Shashikala S, Suriya Sampathclement,Kalyani,Rajkumar,Nandhini,Vigneshwari,Tammana NagarajuSurya Sivasankar
+
+[student@master prod]$ cat 53.get-all-partition.yml 
+- name: create a partition
+  hosts: node1.example.com
+  tasks:
+    - name: gather part data using gather_facts
+      debug:
+        msg: "the mountpits are {{ ansible_mounts }}"
+    
+    - name: get specific mountpoints
+      set_fact:
+        filtered_mounts: "{{ ansible_mounts | selectattr('mount','!=', '/') |map(attribute='mount')|list }}"
+    - name: display filtered mountpoints
+      debug:
+        msg: "Mountpoint: {{ item }}"
+      loop: "{{ filtered_mounts }}"
+      
+      
+[student@master prod]$ cat 54.removemount-part.yml 
+- name: create a partition
+  hosts: node1.example.com
+  tasks:
+    - name: umount salesdata
+      mount: 
+        path: /salesdata
+        src: /dev/sdb1
+        state: absent #will remove /etc/fstab entry
+    - name: get device info /dev/sdb 
+      parted:
+        device: /dev/sdb 
+        unit: GiB
+      register: sdb_info
+    - name: debug sdb info
+      debug:
+        var: sdb_info
+    - name: remove all partitions
+      parted: 
+        device: /dev/sdb 
+        number: "{{ item.num }}"
+        state: absent
+    loop: "{{ sdb_info.partitons }}"
+
+Task54: remove mounted paths and delete partitions
+done:Kiran Rampeesa, Shashikala S,Nandhini,Arivazhagan, Suriya Sampath,Rajkumar, Viraj,Tammana Nagaraju,srikanthclement,Manish,Kalyani;Ajin,Vigneshwari
+    
+[student@master prod]$ cat 55.lvmlab.yml 
+- name: create a partition
+  hosts: node1.example.com
+  tasks:
+    - name: create a 2gb partition /dev/sdb1
+      parted:
+        device: /dev/sdb 
+        number: 1
+        state: present
+        part_start: "0%"
+        part_end: "50%"
+    - name: create VG1
+      lvg:
+        vg: VG1
+        pvs: /dev/sdb1
+    - name: create LV lv1 using VG1
+      lvol:
+        lv: lv1
+        vg: VG1
+        size: 900M
+    - name: format lv1
+      filesystem:
+        fstype: xfs
+        dev: /dev/mapper/VG1-lv1
+    - name: mount in /salesdata folder
+      mount: 
+        path: /salesdata
+        src: /dev/mapper/VG1-lv1
+        fstype: xfs
+        state: mounted #fstab entry created
+
+Task55 :  use LVM create lvsales - 1200mb, using PV, from sdb1 with 3Gb partition /salesdata
+Kiran Rampeesa, Virajclement, Shashikala S,Vigneshwari,Rajkumar, Suriya Sampath,Nandhini,
+
+Task56: remove all lvm and partition
+task1: unmount /salesdata
+task2: remove lvsales
+task3: remove VG1
+task4: remove sdb1 partition
+
+
+* name: remove LVM lab
+  hosts: node1
+  tasks:
+  * name: remove mount point
+      mount:
+        path: /accounts
+        src: /dev/mapper/VG1-lv1
+        state: absent
+  * name: remove lv1
+      lvol:
+        lv: lv1
+        vg: VG1
+        state: absent
+        force: true
+  * name: remove VG1
+      lvg:
+        vg: VG1
+        state: absent
+  * name: remove partition from sdb
+      parted:
+        device: /dev/sdb
+        number: 1
+        state: absent
+
+
+Task56: destroy lvm and partition
+done:Kiran Rampeesa,  Virajclement,Nandhini,Rajkumarsrikanth, Shashikala S,Vigneshwari, Tammana Nagaraju,Rajkumar,arivazhagan
+
+
+
+Day 11 - Assessment & Lab Assignment 20/feb/25
+
+LVM - resize, RAID 0,1,5
+
+With_nested loop example code:
+    ---
+- name: Nested Loop Example in Ansible
+  hosts: node1.example.com
+  gather_facts: no
+  tasks:
+    - name: Create users and assign them to groups
+      user:
+        name: "{{ item.0 }}"
+        groups: "{{ item.1 }}"
+        state: present
+      with_nested:
+        - [ "alice", "bob", "charlie" ]  # List of users
+        - [ "developers", "admins", "testers" ]  # List of groups
+
+    - name: Display the user-group combinations
+      debug:
+        msg: "User {{ item.0 }} is assigned to group {{ item.1 }}"
+      with_nested:
+        - [ "alice", "bob", "charlie" ]
+        - [ "developers", "admins", "testers" ]
+
+
+with loop example
+---
+- name: Nested Loop Example with loop
+  hosts: localhost
+  gather_facts: no
+  vars:
+    users: [ "alice", "bob", "charlie" ]
+    groups: [ "developers", "admins", "testers" ]
+
+  tasks:
+    - name: Create users and assign them to groups
+      user:
+        name: "{{ item.0 }}"
+        groups: "{{ item.1 }}"
+        state: present
+      loop: "{{ users | product(groups) | list }}"
+
+    - name: Display user-group combinations
+      debug:
+        msg: "User {{ item.0 }} is assigned to group {{ item.1 }}"
+      loop: "{{ users | product(groups) | list }}"
+
+loop-with-condition:
+    
+- name: Create user directories with conditions
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Ensure user app directories exist with specific permissions
+      file:
+        path: "/home/{{ item.0 }}/{{ item.1 }}"
+        state: directory
+        mode: "{{ '0755' if item.0 == 'alice' else '0700' }}"
+      loop: 
+        - [ "alice", "bob", "charlie" ]
+        - [ "app1", "app2" ]
+      loop_control:
+        loop_var: item
+
+
+using when clause:
+    - name: Create user directories with when condition
+  file:
+    path: "/home/{{ item[0] }}/{{ item[1] }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - [ "alice", "bob", "charlie" ]
+    - [ "app1", "app2" ]
+  when: item[0] == "alice"
+
+- name: Create directories for others with different permissions
+  file:
+    path: "/home/{{ item[0] }}/{{ item[1] }}"
+    state: directory
+    mode: "0700"
+  loop:
+    - [ "alice", "bob", "charlie" ]
+    - [ "app1", "app2" ]
+  when: item[0] != "alice"
+
+
+- name: Create directories for users with 'o' in their names
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Ensure user app directories exist only if 'o' is in the username
+      file:
+        path: "/home/{{ item.0 }}/{{ item.1 }}"
+        state: directory
+        mode: '0755'
+      loop: 
+        - [ "alice", "bob", "charlie" ]
+        - [ "app1", "app2" ]
+      loop_control:
+        loop_var: item
+      when: "'o' in item.0"
+      
+      
+=====================================================================================
+
+# Loop in condition
+
+- name: condition in loop
+  hosts: node2.example.com
+  # gather_facts: 
+  vars:
+    tester:
+      - kelium
+      - Iron
+      - Silicon
+      - Boron
+  tasks:
+    - name: debug the case
+      debug:
+        msg: "Just message {{ item }}"
+      loop: "{{tester}}" 
+      when: 0
+
+# Condition in loop
+
+
+- name: condition in loop
+  hosts: node2.example.com
+  # gather_facts: 
+  vars:
+    tester:
+      - kelium
+      - Iron
+      - Silicon
+      - Boron
+  tasks:
+    - name: debug the case
+      debug:
+        msg: "Just message {{ item }}"
+      loop: "{{tester}}"       
+      loop_control:
+        loop_var: item
+      when: "'o' in item"
+
+
+
+Parked QA
+EDC - event driven controller - design limitation - answer from DeepSeek
+Limitations of Ansible Event-Driven Automation
+No Native Event-Driven Framework:
+Ansible itself is not inherently event-driven. It is primarily designed for push-based automation (e.g., running playbooks on demand).
+To implement event-driven automation, you need to integrate Ansible with external tools or frameworks (e.g., Ansible Rulebooks, AWX/Ansible Tower, CI/CD pipelines, or custom scripts).
+Polling Overhead:
+Without native event support, you may need to rely on polling (e.g., periodically checking for changes), which can introduce latency and resource overhead.
+Scalability Challenges:
+Ansible is not designed for high-frequency, real-time event processing. Handling a large number of events simultaneously can strain the control node.
+State Management:
+Ansible does not natively maintain state between playbook runs. You need to implement custom logic (e.g., using databases or external state files) to track changes and event history.
+Complexity of Integration:
+Integrating Ansible with event sources (e.g., monitoring tools, message queues, or APIs) requires additional development effort and maintenance.
+Error Handling:
+Event-driven workflows can fail due to network issues, event source unavailability, or playbook errors. Robust error handling and retry mechanisms are essential.
+Limited Real-Time Feedback:
+Ansible playbooks are not designed for real-time feedback. If you need immediate responses to events, consider combining Ansible with other tools (e.g., Server-Sent Events or WebSockets).
+
+Ansible **Event-Driven Automation** (EDA) is a powerful approach for automating tasks in response to events, such as changes in infrastructure, alerts, or external triggers. However, designing and implementing an event-driven controller with Ansible comes with certain **limitations** and requires careful planning. Below is a detailed guide on the **limitations** and **design principles** for building an event-driven controller with Ansible.
+
+---
+
+
+## **Design Guide for Ansible Event-Driven Controller**
+
+To build an effective event-driven automation system with Ansible, follow these design principles:
+
+---
+
+### **1. Define Event Sources**
+Identify the sources of events that will trigger automation. Examples include:
+   - **Monitoring Tools**: Prometheus, Nagios, Zabbix.
+   - **Message Queues**: RabbitMQ, Kafka, AWS SQS.
+   - **APIs**: RESTful APIs, webhooks.
+   - **File Changes**: Inotify, Git hooks.
+   - **Infrastructure Changes**: CloudWatch Events, Kubernetes events.
+
+---
+
+### **2. Choose an Event Processing Framework**
+Use a framework or tool to handle event ingestion and processing. Examples include:
+   - **Ansible Rulebooks**: Part of the Event-Driven Ansible (EDA) ecosystem, Rulebooks allow you to define event-driven workflows using YAML.
+   - **AWX/Ansible Tower**: Provides job templates and workflows that can be triggered by external events.
+   - **Custom Scripts**: Use Python, Bash, or other scripting languages to listen for events and trigger Ansible playbooks.
+
+---
+
+### **3. Design Event-Driven Workflows**
+   - **Rule-Based Triggers**: Define rules to match specific events and trigger corresponding playbooks.
+     Example: If CPU usage > 90%, trigger a playbook to scale up the infrastructure.
+   - **State Management**: Use external storage (e.g., databases, Redis) to track event history and avoid duplicate processing.
+   - **Idempotency**: Ensure playbooks are idempotent to handle repeated events gracefully.
+
+---
+
+### **4. Use Ansible Rulebooks (EDA)**
+Ansible Rulebooks are a key component of Event-Driven Ansible. They allow you to define event-driven workflows in YAML.
+
+#### **Example Rulebook**
+```yaml
+---
+- name: Monitor CPU usage and scale up
+  hosts: localhost
+  sources:
+    - prometheus:
+        url: http://prometheus:9090
+        query: 'avg(rate(node_cpu_seconds_total[1m])) by (instance) > 90'
+  rules:
+    - name: High CPU usage detected
+      condition: event.metrics.instance == "web-server"
+      action:
+        run_playbook:
+          name: scale_up_web_servers.yml
+```
+
+---
+
+### **5. Integrate with Message Queues**
+Use message queues to decouple event producers and consumers.
+
+#### **Example: RabbitMQ Integration**
+   - Configure RabbitMQ to publish events (e.g., infrastructure changes).
+   - Use a Python script to listen to the queue and trigger Ansible playbooks.
+
+```python
+import pika
+import subprocess
+
+def callback(ch, method, properties, body):
+    event = body.decode()
+    if "high_cpu" in event:
+        subprocess.run(["ansible-playbook", "scale_up_servers.yml"])
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.basic_consume(queue='events', on_message_callback=callback, auto_ack=True)
+channel.start_consuming()
+```
+
+---
+
+### **6. Handle Errors and Retries**
+   - Implement retry logic for failed playbooks.
+   - Use tools like **AWX/Ansible Tower** to manage job retries and notifications.
+   - Log errors and events for auditing and debugging.
+
+---
+
+### **7. Optimize for Scalability**
+   - Distribute workloads across multiple control nodes.
+   - Use **Ansible Execution Environments** to containerize playbooks and dependencies.
+   - Limit the frequency of polling to reduce resource usage.
+
+---
+
+### **8. Monitor and Audit**
+   - Use logging and monitoring tools (e.g., ELK Stack, Prometheus) to track event-driven workflows.
+   - Audit event history and playbook execution results.
+
+---
+
+### **9. Example Use Cases**
+   - **Auto-Scaling**: Trigger scaling playbooks based on CPU/memory usage.
+   - **Self-Healing Infrastructure**: Automatically restart failed services or replace unhealthy nodes.
+   - **CI/CD Pipelines**: Trigger playbooks for deployment or testing based on Git events.
+   - **Security Automation**: Respond to security alerts (e.g., block IPs, patch vulnerabilities).
+
+---
+
+### **10. Tools and Integrations**
+   - **Ansible Rulebooks**: For defining event-driven workflows.
+   - **AWX/Ansible Tower**: For job scheduling and event-driven workflows.
+   - **Prometheus**: For monitoring and alerting.
+   - **RabbitMQ/Kafka**: For message queuing.
+   - **Webhooks**: For integrating with external APIs.
+
+---
